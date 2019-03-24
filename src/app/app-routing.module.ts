@@ -6,7 +6,9 @@ const routes: Routes = [
   {
     path: '', component: NavigatorComponent,
     children: [
-      {path: '', loadChildren: './modules/equipment/equipment.module#EquipmentModule'}
+      {path: '', redirectTo: '/equipment', pathMatch: 'full'},
+      {path: 'equipment', loadChildren: './modules/equipment/equipment.module#EquipmentModule'},
+      {path: 'store', loadChildren: './modules/store/store.module#StoreModule'}
     ]
   }
 ];
