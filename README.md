@@ -1,15 +1,15 @@
 # D2笔记
 
 - 依赖
-  - [Angular](#Angular)
-  - [WeUI](#WeUI)
+  - [angular](#angular)
+  - [weui](#weui)
 
-## Angular
+## angular
 
 [Docs](https://angular.cn/)
 
 
-## WeUI
+## weui
 
 [Wiki](https://github.com/Tencent/weui/wiki)
 
