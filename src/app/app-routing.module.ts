@@ -8,7 +8,9 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: '/equipment', pathMatch: 'full'},
       {path: 'equipment', loadChildren: './modules/equipment/equipment.module#EquipmentModule'},
-      {path: 'store', loadChildren: './modules/store/store.module#StoreModule'}
+      {path: 'store', loadChildren: './modules/store/store.module#StoreModule'},
+      {path: 'note', loadChildren: './modules/note/note.module#NoteModule'},
+      {path: 'my', loadChildren: './modules/my/my.module#MyModule'}
     ]
   }
 ];
