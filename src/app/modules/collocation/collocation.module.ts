@@ -1,21 +1,19 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {CollocationComponent} from './collocation/collocation.component';
 import {RouterModule, Routes} from '@angular/router';
-import {NavigatorComponent} from './navigator/navigator.component';
 
 const routes: Routes = [
-  {path: '', component: NavigatorComponent}
+  {path: '', component: CollocationComponent}
 ];
 
 @NgModule({
-  declarations: [NavigatorComponent],
+  declarations: [CollocationComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports: [
-    RouterModule
-  ]
+  exports: [RouterModule]
 })
-export class CommonsModule {
+export class CollocationModule {
 }

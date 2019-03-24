@@ -1,8 +1,14 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {NavigatorComponent} from './commons/navigator/navigator.component';
 
 const routes: Routes = [
-  {path: '', loadChildren: './commons/commons.module#CommonsModule'}
+  {
+    path: '', component: NavigatorComponent,
+    children: [
+      {path: '', loadChildren: './modules/collocation/collocation.module#CollocationModule'}
+    ]
+  }
 ];
 
 @NgModule({
