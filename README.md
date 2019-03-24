@@ -1,5 +1,9 @@
 # D2笔记
 
+- 依赖
+  - [Angular](#Angular)
+  - [WeUI](#WeUI)
+
 ## Angular
 
 [Docs](https://angular.cn/)
