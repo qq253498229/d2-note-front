@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-collocation',
-  templateUrl: './collocation.component.html',
-  styleUrls: ['./collocation.component.scss']
+  selector: 'app-equipment',
+  templateUrl: './equipment.component.html',
+  styleUrls: ['./equipment.component.scss']
 })
-export class CollocationComponent implements OnInit {
+export class EquipmentComponent implements OnInit {
 
   list = [
     {name: 'MF-SOR', complete: false},

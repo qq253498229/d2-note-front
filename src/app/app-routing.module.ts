@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: '', component: NavigatorComponent,
     children: [
-      {path: '', loadChildren: './modules/collocation/collocation.module#CollocationModule'}
+      {path: '', loadChildren: './modules/equipment/equipment.module#EquipmentModule'}
     ]
   }
 ];
