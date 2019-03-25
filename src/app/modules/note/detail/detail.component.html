@@ -1,7 +1,7 @@
 <div class="weui-flex">
   <div class="weui-flex__item">
-    <h2 class="d2-header" *ngIf="detail.id">修改笔记</h2>
-    <h2 class="d2-header" *ngIf="!detail.id">添加笔记</h2>
+    <h2 class="d2-header" *ngIf="detail.id">修改记录</h2>
+    <h2 class="d2-header" *ngIf="!detail.id">添加记录</h2>
   </div>
   <div class="weui-flex__item position-relative">
     <a href="javascript:" class="weui-btn weui-btn_warn position-absolute b30" *ngIf="detail.id" (click)="delete(detail.id)">删除</a>

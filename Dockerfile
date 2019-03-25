@@ -1,7 +1,7 @@
-FROM registry.cn-beijing.aliyuncs.com/codeforfun/cnpm:alpine
+FROM node:11.12.0-alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN cnpm install
+RUN npm install
 COPY . .
 RUN npm run build
 
