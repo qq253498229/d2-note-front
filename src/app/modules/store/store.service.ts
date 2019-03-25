@@ -46,7 +46,7 @@ export class StoreService {
     } else {
       const list = this.getList();
       detail.id = uuid();
-      list.push(detail);
+      list.unshift(detail);
       this.setList(list);
     }
 
