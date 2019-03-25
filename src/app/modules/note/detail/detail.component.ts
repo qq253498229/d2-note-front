@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NoteService} from '../note.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {StoreService} from '../../store/store.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,17 +12,12 @@ export class DetailComponent implements OnInit {
 
   detail;
 
-  accounts = [
-    {code: 1, name: 'mf-sor'},
-    {code: 2, name: 'kc-ama'},
-    {code: 3, name: 'bo-bar'},
-    {code: 4, name: 'kb-nec'},
-    {code: 5, name: 'bh-pal'}
-  ];
+  accounts;
 
 
   constructor(
     private service: NoteService,
+    private storeService: StoreService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -30,6 +26,8 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.detail = this.service.get(id);
+    this.accounts = this.storeService.getList();
+    console.log(this.accounts);
   }
 
   save() {

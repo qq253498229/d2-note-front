@@ -27,7 +27,7 @@
         <select class="weui-select" name="account" [(ngModel)]="detail.account">
           <option selected="" value="0">待定</option>
           <ng-container *ngFor="let item of accounts">
-            <option value="{{item.code}}">{{item.name}}</option>
+            <option value="{{item.id}}">{{item.name}}</option>
           </ng-container>
         </select>
       </div>
