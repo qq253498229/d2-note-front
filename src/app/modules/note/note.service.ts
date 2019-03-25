@@ -47,7 +47,7 @@ export class NoteService {
     } else {
       const list = this.getList();
       detail.id = uuid();
-      list.push(detail);
+      list.unshift(detail);
       this.setList(list);
     }
 
