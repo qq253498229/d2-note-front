@@ -22,7 +22,7 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.list = this.service.list || [];
+    this.list = this.service.getList();
   }
 
   add() {

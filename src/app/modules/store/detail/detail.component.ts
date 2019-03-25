@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StoreService} from '../store.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  detail;
 
-  ngOnInit() {
+  constructor(
+    private service: StoreService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
   }
 
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.detail = this.service.get(id);
+  }
+
+  save() {
+    this.service.save(this.detail);
+    this.router.navigate(['/store']);
+  }
+
+  delete(id: any) {
+    this.service.delete(id);
+    this.router.navigate(['/store']);
+  }
 }
