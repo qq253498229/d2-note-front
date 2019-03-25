@@ -18,8 +18,8 @@
             <p>{{item.name}}</p>
           </div>
           <div class="weui-cell__ft">
-            <i *ngIf="!item['complete']" class="weui-icon-info-circle"></i>
-            <i *ngIf="item['complete']" class="weui-icon-success"></i>
+            <i *ngIf="item['account'] == 0" class="weui-icon-info-circle"></i>
+            <i *ngIf="item['account'] != 0" class="weui-icon-success"></i>
           </div>
         </a>
       </ng-container>

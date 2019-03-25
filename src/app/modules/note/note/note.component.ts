@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {NoteService} from '../note.service';
 
 @Component({
   selector: 'app-note',
@@ -7,19 +8,16 @@ import {Router} from '@angular/router';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  list = [
-    {name: 'MF-SOR', complete: false, id: 1},
-    {name: 'BH-PAL', complete: true, id: 2},
-    {name: 'KC-AMA', complete: false, id: 3},
-    {name: 'KB-NEC', complete: false, id: 4}
-  ];
+  list = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private service: NoteService
   ) {
   }
 
   ngOnInit() {
+    this.list = this.service.getList();
   }
 
   add() {

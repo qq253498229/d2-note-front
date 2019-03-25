@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {NoteService} from '../note.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -7,19 +9,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  types = [
-    {code: 1, name: '武器'},
-    {code: 2, name: '副手'},
-    {code: 3, name: '头盔'},
-    {code: 4, name: '衣服'},
-    {code: 5, name: '腰带'},
-    {code: 7, name: '手套'},
-    {code: 6, name: '鞋'},
-    {code: 7, name: '项链'},
-    {code: 8, name: '戒指'},
-    {code: 9, name: '护身符'},
-    {code: 10, name: '附文'}
-  ];
+  detail;
 
   accounts = [
     {code: 1, name: 'mf-sor'},
@@ -30,13 +20,20 @@ export class DetailComponent implements OnInit {
   ];
 
 
-  constructor() {
+  constructor(
+    private service: NoteService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.detail = this.service.get(id);
   }
 
   save() {
-    console.log(1);
+    this.service.save(this.detail);
+    this.router.navigate(['/note']);
   }
 }
