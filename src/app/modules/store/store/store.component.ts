@@ -8,12 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
-  list = [
-    {name: 'MF-SOR', complete: false},
-    {name: 'BH-PAL', complete: true},
-    {name: 'KC-AMA', complete: false},
-    {name: 'KB-NEC', complete: false}
-  ];
+  list;
 
   constructor(
     private service: StoreService,
