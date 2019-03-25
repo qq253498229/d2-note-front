@@ -1,3 +1,80 @@
-<p>
-  my works!
-</p>
+<div class="weui-msg">
+  <div class="weui-msg__icon-area">
+    <!--<i class="weui-icon-success weui-icon_msg"></i>-->
+  </div>
+  <div class="weui-msg__text-area">
+    <h2 class="weui-msg__title">我的</h2>
+    <p class="weui-msg__desc">
+      由于刚刚开发，没有<span class="color-red">钱</span>买数据库和服务器来存储数据，为防止数据意外丢失，这里提供了一个手动保存数据方法。
+    </p>
+    <p class="weui-msg__desc">
+      注意导出的文件为json格式，可以直接用记事本打开进行编辑。导入的时候也必须是json格式，否则会出先各种诡异的bug。。。
+    </p>
+  </div>
+  <div class="weui-msg__opr-area">
+    <p class="weui-btn-area">
+      <a (click)="export()" class="weui-btn weui-btn_primary">导出数据</a>
+      <a (click)="import()" class="weui-btn weui-btn_default">
+        导入数据
+        <input id="uploaderInput" #file (change)="change()" class="weui-uploader__input" type="file"
+               accept="application/json">
+      </a>
+      <a (click)="clearAllData()" class="weui-btn weui-btn_warn mt50">清空数据</a>
+    </p>
+  </div>
+</div>
+
+<div class="weui-msg">
+  <div class="weui-msg__text-area">
+    <p class="weui-msg__desc">
+      接下来预计会逐步加入装备属性功能，配装功能，有数据库了之后会加入注册登陆功能。
+      如果用户数量多了，打算推出快捷将自己打到的东西进行上架，让其他玩家进行搜索购买等功能。
+    </p>
+    <p class="weui-msg__desc">
+      如果您有建议或者想一起开发的可以直接联系我
+    </p>
+    <p class="weui-msg__desc">
+      联系方式qq253498229/微信wangbin_test。
+    </p>
+  </div>
+</div>
+
+<div *ngIf="errorFlag">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title">导入失败</strong></div>
+    <div class="weui-dialog__bd">我估摸着是你选错文件了，请注意文件为json格式，如果还是不行请联系我qq：253498229</div>
+    <div class="weui-dialog__ft">
+      <a (click)="closeDialog()" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+    </div>
+  </div>
+</div>
+
+<div id="toast" *ngIf="successFlag">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast">
+    <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+    <p class="weui-toast__content">导入成功</p>
+  </div>
+</div>
+
+<div id="dialog1" *ngIf="confirmFlag">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title">删除提示</strong></div>
+    <div class="weui-dialog__bd">你确定要清空所有数据吗？清空之前请确认已保存了所有数据，否则将无法找回。</div>
+    <div class="weui-dialog__ft">
+      <a (click)="clearData(1)" class="weui-dialog__btn color-red">确定清空</a>
+      <a (click)="confirmFlag = false" class="weui-dialog__btn weui-dialog__btn_default">取消</a>
+    </div>
+  </div>
+</div>
+
+
+<div id="toast1" *ngIf="clearSuccessFlag">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast">
+    <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+    <p class="weui-toast__content">清空数据成功</p>
+  </div>
+</div>
