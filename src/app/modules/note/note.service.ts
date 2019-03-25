@@ -52,4 +52,12 @@ export class NoteService {
     }
 
   }
+
+  delete(id: any) {
+    console.log(id);
+    const list = _.reject(this.getList(), s => {
+      return s.id === id;
+    });
+    this.setList(list);
+  }
 }

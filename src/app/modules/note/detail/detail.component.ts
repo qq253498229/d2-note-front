@@ -36,4 +36,9 @@ export class DetailComponent implements OnInit {
     this.service.save(this.detail);
     this.router.navigate(['/note']);
   }
+
+  delete(id: any) {
+    this.service.delete(id);
+    this.router.navigate(['/note']);
+  }
 }
