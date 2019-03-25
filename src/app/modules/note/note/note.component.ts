@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-note',
@@ -7,19 +8,25 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NoteComponent implements OnInit {
   list = [
-    {name: 'MF-SOR', complete: false},
-    {name: 'BH-PAL', complete: true},
-    {name: 'KC-AMA', complete: false},
-    {name: 'KB-NEC', complete: false}
+    {name: 'MF-SOR', complete: false, id: 1},
+    {name: 'BH-PAL', complete: true, id: 2},
+    {name: 'KC-AMA', complete: false, id: 3},
+    {name: 'KB-NEC', complete: false, id: 4}
   ];
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
   }
 
   add() {
-    this.list.push({name: 'TEST', complete: false});
+    this.router.navigate(['/note/add']);
+  }
+
+  detail(id: any) {
+    this.router.navigate(['/note/add', id]);
   }
 }

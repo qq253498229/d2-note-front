@@ -6,7 +6,6 @@
     <a href="javascript:" class="weui-btn weui-btn_primary position-absolute b30" (click)="add()">
       添加记录
     </a>
-
   </div>
 </div>
 <div class="weui-flex">
@@ -14,7 +13,7 @@
     <div class="weui-cells">
 
       <ng-container *ngFor="let item of list">
-        <a class="weui-cell weui-cell_access" href="javascript:">
+        <a class="weui-cell weui-cell_access" (click)="detail(item['id'])">
           <div class="weui-cell__bd">
             <p>{{item.name}}</p>
           </div>
