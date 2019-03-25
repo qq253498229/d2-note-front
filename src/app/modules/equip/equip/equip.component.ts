@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-equipment',
-  templateUrl: './equipment.component.html',
-  styleUrls: ['./equipment.component.scss']
+  selector: 'app-equip',
+  templateUrl: './equip.component.html',
+  styleUrls: ['./equip.component.scss']
 })
-export class EquipmentComponent implements OnInit {
+export class EquipComponent implements OnInit {
 
   list = [
     {name: 'MF-SOR', complete: false},
