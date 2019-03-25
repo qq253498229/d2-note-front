@@ -3,5 +3,7 @@ services:
   app:
     image: registry.cn-beijing.aliyuncs.com/codeforfun/d2-note-front:latest
     build: .
+    volumes:
+      - "./certs:/etc/nginx/certs"
     ports:
      - "80:80"
