@@ -27,6 +27,6 @@ export class NoteComponent implements OnInit {
   }
 
   detail(id: any) {
-    this.router.navigate(['/note/add', id]);
+    this.router.navigate(['/note', id]);
   }
 }

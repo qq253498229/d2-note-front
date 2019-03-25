@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {StoreService} from '../store.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-store',
@@ -13,13 +15,21 @@ export class StoreComponent implements OnInit {
     {name: 'KB-NEC', complete: false}
   ];
 
-  constructor() {
+  constructor(
+    private service: StoreService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
+    this.list = this.service.list || [];
   }
 
   add() {
-    this.list.push({name: 'TEST', complete: false});
+    this.router.navigate(['/store/add']);
+  }
+
+  detail(id: any) {
+    this.router.navigate(['/store', id]);
   }
 }

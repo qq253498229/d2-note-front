@@ -13,8 +13,8 @@
   <div class="weui-flex__item">
     <div class="weui-cells">
 
-      <ng-container *ngFor="let item of list">
-        <a class="weui-cell weui-cell_access" href="javascript:">
+      <ng-container *ngIf="list.length > 0">
+        <a *ngFor="let item of list" class="weui-cell weui-cell_access" href="javascript:">
           <div class="weui-cell__bd">
             <p>{{item.name}}</p>
           </div>
@@ -24,6 +24,21 @@
           </div>
         </a>
       </ng-container>
+
+      <ng-container *ngIf="!list || list.length === 0">
+        <div class="weui-msg">
+          <div class="weui-msg__icon-area">
+            <i class="weui-icon-warn weui-icon_msg-primary"></i>
+          </div>
+          <div class="weui-msg__text-area">
+            <h2 class="weui-msg__title">没有账号</h2>
+            <p class="weui-msg__desc">
+              请点击上面那个绿色的添加账号，把你的仓库小号添加进来
+            </p>
+          </div>
+        </div>
+      </ng-container>
+
 
     </div>
 

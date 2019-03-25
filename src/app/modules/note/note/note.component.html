@@ -12,8 +12,8 @@
   <div class="weui-flex__item">
     <div class="weui-cells">
 
-      <ng-container *ngFor="let item of list">
-        <a class="weui-cell weui-cell_access" (click)="detail(item['id'])">
+      <ng-container *ngIf="list.length > 0">
+        <a *ngFor="let item of list" class="weui-cell weui-cell_access" (click)="detail(item['id'])">
           <div class="weui-cell__bd">
             <p>{{item.name}}</p>
           </div>
@@ -22,6 +22,20 @@
             <i *ngIf="item['complete']" class="weui-icon-success"></i>
           </div>
         </a>
+      </ng-container>
+
+      <ng-container *ngIf="!list || list.length === 0">
+        <div class="weui-msg">
+          <div class="weui-msg__icon-area">
+            <i class="weui-icon-warn weui-icon_msg-primary"></i>
+          </div>
+          <div class="weui-msg__text-area">
+            <h2 class="weui-msg__title">没有记录</h2>
+            <p class="weui-msg__desc">
+              请点击上面那个绿色的添加记录，把你刚打到的好东西添加进来吧
+            </p>
+          </div>
+        </div>
       </ng-container>
 
     </div>
