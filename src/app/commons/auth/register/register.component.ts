@@ -14,9 +14,9 @@ export class RegisterComponent implements OnInit {
     password: string,
     nickname: string
   } = {
-    username: '17191095270',
-    password: '111111',
-    nickname: '大胃王'
+    username: '',
+    password: '',
+    nickname: ''
   };
   errorFlag = false;
   errorTitle = '';
