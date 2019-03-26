@@ -87,4 +87,8 @@ export class AuthService {
       this.setUser(user);
     });
   }
+
+  clearAll = () => {
+    localStorage.clear();
+  }
 }

@@ -27,6 +27,7 @@ export class MyComponent implements OnInit {
 
 
   logout() {
+    this.authService.clearAll();
     window.location.href = environment.oauthUrl + '/logout';
   }
 }
