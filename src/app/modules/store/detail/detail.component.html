@@ -4,11 +4,10 @@
     <h2 class="d2-header" *ngIf="!detail.id">添加账号</h2>
   </div>
   <div class="weui-flex__item position-relative">
-    <a href="javascript:" class="weui-btn weui-btn_warn position-absolute b30" *ngIf="detail.id" (click)="delete(detail.id)">删除</a>
+    <a href="javascript:" class="weui-btn weui-btn_warn position-absolute b30" *ngIf="detail.id"
+       (click)="delete(detail.id)">删除</a>
   </div>
 </div>
-
-
 
 
 <form #detailFrom="ngForm">
@@ -17,13 +16,29 @@
   <div class="weui-cells">
     <div class="weui-cell">
       <div class="weui-cell__bd">
-        <input class="weui-input" type="text" placeholder="请输入物品名称" maxlength="64" [(ngModel)]="detail.name" required name="name">
+        <input class="weui-input" type="text" placeholder="请输入账号名称" maxlength="64" [(ngModel)]="detail.name" required
+               name="name">
       </div>
     </div>
   </div>
 
+  <div class="weui-cells__title" *ngIf="detail.id">该账号下的物品</div>
+
+  <div class="weui-cells" *ngIf="detail.id">
+    <a class="weui-cell weui-cell_access" *ngFor="let item of list" (click)="chooseItem(item.id)">
+      <div class="weui-cell__bd">
+        <p>{{item.name}}</p>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </a>
+  </div>
+
+
   <div class="weui-btn-area">
     <a class="weui-btn weui-btn_primary" (click)="save()" *ngIf="detailFrom.valid">确定</a>
-    <a href="javascript:" class="weui-btn weui-btn_plain-primary weui-btn_plain-disabled" *ngIf="detailFrom.invalid">确定</a>
+    <a href="javascript:" class="weui-btn weui-btn_plain-primary weui-btn_plain-disabled"
+       *ngIf="detailFrom.invalid">确定</a>
   </div>
 </form>
+

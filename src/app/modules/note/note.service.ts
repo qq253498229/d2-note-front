@@ -60,4 +60,13 @@ export class NoteService {
     });
     this.setList(list);
   }
+
+  getByAccountId(id: string) {
+    if (!id) {
+      return [];
+    }
+    return _.filter(this.getList(), s => {
+      return s.account === id;
+    });
+  }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../store.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {NoteService} from '../../note/note.service';
 
 @Component({
   selector: 'app-detail',
@@ -11,8 +12,11 @@ export class DetailComponent implements OnInit {
 
   detail;
 
+  list;
+
   constructor(
     private service: StoreService,
+    private noteService: NoteService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -21,6 +25,7 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.detail = this.service.get(id);
+    this.list = this.noteService.getByAccountId(id);
   }
 
   save() {
@@ -31,5 +36,9 @@ export class DetailComponent implements OnInit {
   delete(id: any) {
     this.service.delete(id);
     this.router.navigate(['/store']);
+  }
+
+  chooseItem(id: any) {
+    this.router.navigate(['/note', id]);
   }
 }
