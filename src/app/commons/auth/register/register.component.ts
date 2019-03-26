@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    this.http.post(environment.url + '/user', this.user).subscribe(() => {
+    this.http.post(environment.oauthUrl + '/user', this.user).subscribe(() => {
       this.successFlag = true;
       setTimeout(() => {
         this.successFlag = false;

@@ -58,7 +58,7 @@ export class AuthService {
     params.append('grant_type', 'password');
     params.append('username', user.username);
     params.append('password', user.password);
-    return this.http.post(environment.url + '/oauth/token', params.toString(), {
+    return this.http.post(environment.oauthUrl + '/oauth/token', params.toString(), {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
         Authorization: 'Basic ' + btoa('client:secret')
