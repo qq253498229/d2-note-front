@@ -4,6 +4,7 @@ import {NoteService} from '../../note/note.service';
 import {StoreService} from '../../store/store.service';
 import {AuthService} from '../../../commons/auth/auth.service';
 import {User} from '../../../commons/auth/user';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-my',
@@ -25,4 +26,7 @@ export class MyComponent implements OnInit {
   }
 
 
+  logout() {
+    window.location.href = environment.oauthUrl + '/logout';
+  }
 }
