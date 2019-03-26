@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as _ from 'underscore';
-import {v4 as uuid} from 'uuid';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,13 @@ export class NoteService {
 
   NOTE_KEY = 'note';
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
   }
 
-  getList(): any[] {
-    return JSON.parse(localStorage.getItem(this.NOTE_KEY) || '[]');
+  getList() {
+    return this.http.get('/api/note');
   }
 
   setList(obj: any): void {
@@ -35,7 +37,7 @@ export class NoteService {
   }
 
   save(detail: any) {
-    if (detail.id) {
+    /*if (detail.id) {
       const list = _.map(this.getList(), s => {
         if (s.id === detail.id) {
           return detail;
@@ -49,24 +51,24 @@ export class NoteService {
       detail.id = uuid();
       list.unshift(detail);
       this.setList(list);
-    }
+    }*/
 
   }
 
   delete(id: any) {
-    console.log(id);
-    const list = _.reject(this.getList(), s => {
-      return s.id === id;
-    });
-    this.setList(list);
+    /* console.log(id);
+     const list = _.reject(this.getList(), s => {
+       return s.id === id;
+     });
+     this.setList(list);*/
   }
 
   getByAccountId(id: string) {
-    if (!id) {
+    /*if (!id) {
       return [];
     }
     return _.filter(this.getList(), s => {
       return s.account === id;
-    });
+    });*/
   }
 }

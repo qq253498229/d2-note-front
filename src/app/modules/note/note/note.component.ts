@@ -17,7 +17,9 @@ export class NoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.list = this.service.getList();
+    this.service.getList().subscribe(res => {
+      console.log(res);
+    });
   }
 
   add() {

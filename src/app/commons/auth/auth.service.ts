@@ -20,10 +20,7 @@ export class AuthService {
 
   getToken(): Auth {
     const json = localStorage.getItem(this.AUTH_KEY);
-    if (!json) {
-      return new Auth();
-    }
-    return JSON.parse(json);
+    return json ? JSON.parse(json) : null;
   }
 
   setToken(auth: Auth) {
@@ -32,10 +29,7 @@ export class AuthService {
 
   getUser(): User {
     const json = localStorage.getItem(this.USER_KEY);
-    if (!json) {
-      return new User();
-    }
-    return JSON.parse(json);
+    return json ? JSON.parse(json) : null;
   }
 
   setUser(user: User) {
@@ -46,7 +40,7 @@ export class AuthService {
     if (this.getUser() && this.getToken()) {
       return true;
     }
-    if (this.getToken().expiresTo < new Date().getTime()) {
+    if (this.getToken() && this.getToken().expiresTo < new Date().getTime()) {
       // todo 这里应该改成刷新token
       return false;
     }
@@ -78,12 +72,19 @@ export class AuthService {
     auth.tokenType = res.token_type;
     auth.expiresTo = new Date().getTime() + res.expires_in * 1000;
     this.setToken(auth);
-    const user = new User();
-    const userObj: { authorities: string[], nickname: string, id: number }
-      = JSON.parse(decodeURIComponent(escape(atob(res.access_token.split('.')[1]))));
-    user.id = userObj.id;
-    user.nickname = userObj.nickname;
-    user.authorities = userObj.authorities;
-    this.setUser(user);
+    const params = new URLSearchParams();
+    params.append('token', res.access_token);
+    this.http.post(environment.oauthUrl + '/oauth/check_token', params.toString(), {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+        Authorization: 'Basic ' + btoa('client:secret')
+      }
+    }).subscribe(res1 => {
+      const user = new User();
+      user.id = res1[`id`];
+      user.nickname = res1[`nickname`];
+      user.authorities = res1[`authorities`];
+      this.setUser(user);
+    });
   }
 }

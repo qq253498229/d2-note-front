@@ -4,6 +4,8 @@ import {NavigatorComponent} from './commons/navigator/navigator.component';
 import {AuthGuard} from './commons/auth/auth.guard';
 import {LoginComponent} from './commons/auth/login/login.component';
 import {RegisterComponent} from './commons/auth/register/register.component';
+import {AuthInterceptor} from './commons/auth/auth.interceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}]
 })
 export class AppRoutingModule {
 }
