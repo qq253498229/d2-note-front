@@ -1,4 +1,4 @@
-FROM node:11.12.0-alpine
+FROM registry.cn-beijing.aliyuncs.com/codeforfun/cnpm:alpine
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
