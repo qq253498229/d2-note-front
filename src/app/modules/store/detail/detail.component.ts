@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../store.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Store} from '../store';
 
 @Component({
   selector: 'app-detail',
@@ -9,9 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class DetailComponent implements OnInit {
 
-  detail = {
-    id: ''
-  };
+  detail: Store;
 
   list;
 
@@ -23,6 +22,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.detail = new Store();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.service.get(id).subscribe(res => {

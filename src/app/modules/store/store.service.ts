@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Store} from './store';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class StoreService {
   }
 
   get(id: string): any {
-    return this.http.get('/api/account/' + id);
+    return this.http.get<Store>('/api/account/' + id);
   }
 
   save(detail: any) {
