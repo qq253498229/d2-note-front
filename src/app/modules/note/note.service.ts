@@ -7,8 +7,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class NoteService {
 
-  NOTE_KEY = 'note';
-
   constructor(
     private http: HttpClient
   ) {
@@ -16,10 +14,6 @@ export class NoteService {
 
   getList() {
     return this.http.get('/api/note');
-  }
-
-  setList(obj: any): void {
-    localStorage.setItem(this.NOTE_KEY, JSON.stringify(obj || []));
   }
 
   get(id: string): any {
@@ -37,38 +31,15 @@ export class NoteService {
   }
 
   save(detail: any) {
-    /*if (detail.id) {
-      const list = _.map(this.getList(), s => {
-        if (s.id === detail.id) {
-          return detail;
-        } else {
-          return s;
-        }
-      });
-      this.setList(list);
-    } else {
-      const list = this.getList();
-      detail.id = uuid();
-      list.unshift(detail);
-      this.setList(list);
-    }*/
+    console.log(detail);
 
   }
 
   delete(id: any) {
-    /* console.log(id);
-     const list = _.reject(this.getList(), s => {
-       return s.id === id;
-     });
-     this.setList(list);*/
+    console.log(id);
   }
 
   getByAccountId(id: string) {
-    /*if (!id) {
-      return [];
-    }
-    return _.filter(this.getList(), s => {
-      return s.account === id;
-    });*/
+    return this.http.get('/api/account/' + id);
   }
 }

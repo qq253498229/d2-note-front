@@ -25,17 +25,21 @@ export class DetailComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     this.detail = this.service.get(id);
-    this.list = this.noteService.getByAccountId(id);
+    this.noteService.getByAccountId(id).subscribe(res => {
+      this.detail = res;
+    });
   }
 
   save() {
-    this.service.save(this.detail);
-    this.router.navigate(['/store']);
+    this.service.save(this.detail).subscribe(() => {
+      this.router.navigate(['/store']);
+    });
   }
 
   delete(id: any) {
-    this.service.delete(id);
-    this.router.navigate(['/store']);
+    this.service.delete(id).subscribe(() => {
+      this.router.navigate(['/store']);
+    });
   }
 
   chooseItem(id: any) {

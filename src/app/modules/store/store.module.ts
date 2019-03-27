@@ -4,6 +4,7 @@ import {StoreComponent} from './store/store.component';
 import {RouterModule, Routes} from '@angular/router';
 import {DetailComponent} from './detail/detail.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {path: '', component: StoreComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
