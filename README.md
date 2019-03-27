@@ -4,7 +4,6 @@
   - [angular](#angular)
   - [weui](#weui)
   - [underscore](#underscore)
-  - [FileSaver](#filesaver)
 - 文件结构
   - [导航栏](./src/app/commons/navigator)
   - [记录模块](./src/app/modules/note)
@@ -32,9 +31,3 @@
 ## underscore
 
 [Docs](https://underscorejs.org/)
-
-## filesaver
-
-Js导出文件
-
-[Github](https://github.com/eligrey/FileSaver.js)
