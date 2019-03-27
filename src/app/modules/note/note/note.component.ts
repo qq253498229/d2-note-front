@@ -8,7 +8,7 @@ import {NoteService} from '../note.service';
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  list = [];
+  list;
 
   constructor(
     private router: Router,
@@ -18,7 +18,7 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
     this.service.getList().subscribe(res => {
-      console.log(res);
+      this.list = res;
     });
   }
 

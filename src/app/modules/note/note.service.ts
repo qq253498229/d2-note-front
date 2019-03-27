@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import * as _ from 'underscore';
 import {HttpClient} from '@angular/common/http';
+import {Note} from './note';
 
 @Injectable({
   providedIn: 'root'
@@ -16,30 +16,15 @@ export class NoteService {
     return this.http.get('/api/note');
   }
 
-  get(id: string): any {
-    if (id) {
-      return _.find(this.getList(), s => {
-        return s.id === id;
-      });
-    } else {
-      return {
-        id: null,
-        name: '',
-        account: 0
-      };
-    }
+  get(id: string) {
+    return this.http.get<Note>(`/api/note/${id}`);
   }
 
   save(detail: any) {
-    console.log(detail);
-
+    return this.http.post('/api/note', detail);
   }
 
   delete(id: any) {
-    console.log(id);
-  }
-
-  getByAccountId(id: string) {
-    return this.http.get('/api/account/' + id);
+    return this.http.delete('/api/note/' + id);
   }
 }
