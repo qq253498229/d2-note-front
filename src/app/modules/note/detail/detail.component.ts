@@ -54,8 +54,4 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  changeAccount($event: {}) {
-    console.log(this.detail);
-    console.log($event);
-  }
 }
