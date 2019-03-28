@@ -24,10 +24,10 @@
   <div class="weui-cells">
     <div class="weui-cell weui-cell_select">
       <div class="weui-cell__bd">
-        <select class="weui-select" name="account" [(ngModel)]="detail.account">
+        <select class="weui-select" name="account" [(ngModel)]="detail.account.id">
           <option selected="" value="0">待定</option>
           <ng-container *ngFor="let item of accounts">
-            <option value="{{item.id}}">{{item.name}}</option>
+            <option [value]="item.id">{{item.name}}</option>
           </ng-container>
         </select>
       </div>

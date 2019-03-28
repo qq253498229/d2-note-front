@@ -12,7 +12,7 @@
   <div class="weui-flex__item">
     <div class="weui-cells">
 
-      <ng-container *ngIf="list.length > 0">
+      <ng-container *ngIf="list && list.length > 0">
         <a *ngFor="let item of list" class="weui-cell weui-cell_access" (click)="detail(item['id'])">
           <div class="weui-cell__bd">
             <p>{{item.name}}</p>

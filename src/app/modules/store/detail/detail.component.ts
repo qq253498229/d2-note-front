@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../store.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NoteService} from '../../note/note.service';
+import {Store} from '../store';
 
 @Component({
   selector: 'app-detail',
@@ -10,32 +10,37 @@ import {NoteService} from '../../note/note.service';
 })
 export class DetailComponent implements OnInit {
 
-  detail;
+  detail: Store;
 
   list;
 
   constructor(
     private service: StoreService,
-    private noteService: NoteService,
     private router: Router,
     private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
+    this.detail = new Store();
     const id = this.route.snapshot.paramMap.get('id');
-    this.detail = this.service.get(id);
-    this.list = this.noteService.getByAccountId(id);
+    if (id) {
+      this.service.get(id).subscribe(res => {
+        this.detail = res;
+      });
+    }
   }
 
   save() {
-    this.service.save(this.detail);
-    this.router.navigate(['/store']);
+    this.service.save(this.detail).subscribe(() => {
+      this.router.navigate(['/store']);
+    });
   }
 
   delete(id: any) {
-    this.service.delete(id);
-    this.router.navigate(['/store']);
+    this.service.delete(id).subscribe(() => {
+      this.router.navigate(['/store']);
+    });
   }
 
   chooseItem(id: any) {

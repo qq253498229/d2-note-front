@@ -9,13 +9,12 @@ import {AuthService} from '../auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // todo
   user: {
     username: string,
     password: string
   } = {
-    username: 'user',
-    password: 'password'
+    username: '',
+    password: ''
   };
   errorFlag = false;
   successFlag = false;

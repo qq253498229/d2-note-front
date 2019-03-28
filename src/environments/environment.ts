@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  oauthUrl: 'http://localhost:12222',
-  url: 'http://localhost:8080'
+  oauthUrl: 'http://localhost:12222'
 };
 
 /*

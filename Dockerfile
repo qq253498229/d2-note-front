@@ -6,8 +6,7 @@ COPY . .
 RUN npm run build
 
 FROM nginx:alpine
+COPY default.conf /etc/nginx/conf.d/
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=0 /app/dist /usr/share/nginx/html
-COPY default.conf /etc/nginx/conf.d/
-VOLUME /etc/nginx/certs
 CMD ["nginx", "-g", "daemon off;"]

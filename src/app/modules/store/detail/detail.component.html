@@ -25,7 +25,7 @@
   <div class="weui-cells__title" *ngIf="detail.id">该账号下的物品</div>
 
   <div class="weui-cells" *ngIf="detail.id">
-    <a class="weui-cell weui-cell_access" *ngFor="let item of list" (click)="chooseItem(item.id)">
+    <a class="weui-cell weui-cell_access" *ngFor="let item of detail.notes" (click)="chooseItem(item.id)">
       <div class="weui-cell__bd">
         <p>{{item.name}}</p>
       </div>
