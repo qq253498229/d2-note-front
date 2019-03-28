@@ -12,7 +12,7 @@
   <div class="weui-flex__item">
     <div class="weui-cells">
 
-      <ng-container *ngIf="list && list.length > 0">
+      <ng-container *ngIf="flag && (list && list.length > 0)">
         <a *ngFor="let item of list" class="weui-cell weui-cell_access" (click)="detail(item['id'])">
           <div class="weui-cell__bd">
             <p>{{item.name}}</p>
@@ -24,7 +24,7 @@
         </a>
       </ng-container>
 
-      <ng-container *ngIf="!list || list.length === 0">
+      <ng-container *ngIf="flag && (!list || list.length === 0)">
         <div class="weui-msg">
           <div class="weui-msg__icon-area">
             <i class="weui-icon-warn weui-icon_msg-primary"></i>

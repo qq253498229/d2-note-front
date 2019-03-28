@@ -10,6 +10,7 @@ import {CommonService} from '../../../commons/common.service';
 })
 export class StoreComponent implements OnInit {
   list;
+  flag;
 
   constructor(
     private service: StoreService,
@@ -19,9 +20,11 @@ export class StoreComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.flag = false;
     this.common.loading();
     this.service.getList().subscribe(res => {
       this.list = res;
+      this.flag = true;
       this.common.loadingClose();
     });
   }

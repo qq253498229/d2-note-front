@@ -10,6 +10,7 @@ import {CommonService} from '../../../commons/common.service';
 })
 export class NoteComponent implements OnInit {
   list;
+  flag;
 
   constructor(
     private router: Router,
@@ -19,9 +20,11 @@ export class NoteComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.flag = false;
     this.common.loading();
     this.service.getList().subscribe(res => {
       this.list = res;
+      this.flag = true;
       this.common.loadingClose();
     });
   }
