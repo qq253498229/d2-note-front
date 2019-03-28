@@ -29,7 +29,7 @@ export class CommonService {
   }
 
   loading(seconds?: number) {
-    this.loadingSubject.next(String(seconds));
+    this.loadingSubject.next(seconds ? String(seconds) : null);
   }
 
   loadingClose() {
