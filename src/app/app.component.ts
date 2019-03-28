@@ -16,6 +16,11 @@ export class AppComponent implements OnInit {
   errorTitle = '';
   errorMsg = '';
 
+  confirmFlag = false;
+  confirmTitle = '';
+  confirmMsg = '';
+  confirmCallback: () => void;
+
   constructor(
     private common: CommonService,
     private cdRef: ChangeDetectorRef
@@ -25,17 +30,16 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     // toast
-    this.common._TOAST.subscribe(msg => {
-      const result = JSON.parse(msg);
+    this.common._TOAST.subscribe(res => {
       this.toastFlag = true;
-      this.toastMsg = result.msg;
+      this.toastMsg = res.msg;
       this.cdRef.detectChanges();
-      if (result.seconds) {
+      if (res.seconds) {
         setTimeout(() => {
           this.toastFlag = false;
           this.toastMsg = '';
           this.cdRef.detectChanges();
-        }, result.seconds);
+        }, res.seconds);
       }
     });
     this.common._TOAST_CLOSE.subscribe(() => {
@@ -60,10 +64,16 @@ export class AppComponent implements OnInit {
     });
     // error
     this.common._ERROR.subscribe(res => {
-      const result = JSON.parse(res);
       this.errorFlag = true;
-      this.errorTitle = result.title;
-      this.errorMsg = result.msg;
+      this.errorTitle = res.title;
+      this.errorMsg = res.msg;
+    });
+    // confirm
+    this.common._CONFIRM.subscribe(res => {
+      this.confirmFlag = true;
+      this.confirmTitle = res.title;
+      this.confirmMsg = res.msg;
+      this.confirmCallback = res.callback;
     });
   }
 }

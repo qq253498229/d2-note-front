@@ -44,10 +44,16 @@ export class DetailComponent implements OnInit {
   }
 
   delete(id: any) {
-    this.common.loading();
-    this.service.delete(id).subscribe(() => {
-      this.router.navigate(['/store']);
-      this.common.loadingClose();
+    this.common.confirm({
+      title: '确认删除',
+      msg: '您确认删除这个账号吗，这样做会删除账号下的所有记录？',
+      callback: () => {
+        this.common.loading();
+        this.service.delete(id).subscribe(() => {
+          this.router.navigate(['/store']);
+          this.common.loadingClose();
+        });
+      }
     });
   }
 
