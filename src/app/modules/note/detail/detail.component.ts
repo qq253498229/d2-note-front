@@ -28,8 +28,8 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.common.loading();
     this.detail = new Note();
+    this.common.loading();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.service.get(id).subscribe(res => {
