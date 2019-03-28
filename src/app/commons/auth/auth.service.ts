@@ -74,17 +74,11 @@ export class AuthService {
     this.setToken(auth);
     const params = new URLSearchParams();
     params.append('token', res.access_token);
-    this.http.post(environment.oauthUrl + '/oauth/check_token', params.toString(), {
+    return this.http.post(environment.oauthUrl + '/oauth/check_token', params.toString(), {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
         Authorization: 'Basic ' + btoa('client:secret')
       }
-    }).subscribe(res1 => {
-      const user = new User();
-      user.id = res1[`id`];
-      user.nickname = res1[`nickname`];
-      user.authorities = res1[`authorities`];
-      this.setUser(user);
     });
   }
 

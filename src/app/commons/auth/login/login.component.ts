@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth.service';
+import {CommonService} from '../../common.service';
+import {User} from '../user';
 
 @Component({
   selector: 'app-login',
@@ -16,15 +18,12 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   };
-  errorFlag = false;
-  successFlag = false;
-  errorTitle = '';
-  errorMsg = '';
 
   constructor(
     private router: Router,
     private http: HttpClient,
-    private service: AuthService
+    private service: AuthService,
+    private common: CommonService
   ) {
   }
 
@@ -37,16 +36,17 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.service.login(this.user).subscribe(res => {
-      this.service.saveAuth(res);
-      this.successFlag = true;
-      setTimeout(() => {
-        this.successFlag = false;
+      this.service.saveAuth(res).subscribe(res1 => {
+        const user = new User();
+        user.id = res1[`id`];
+        user.nickname = res1[`nickname`];
+        user.authorities = res1[`authorities`];
+        this.service.setUser(user);
         this.router.navigate(['/']);
-      }, 1500);
+        this.common.toast({msg: '登录成功', seconds: 1500});
+      });
     }, () => {
-      this.errorFlag = true;
-      this.errorTitle = '登陆失败';
-      this.errorMsg = '请检查用户名或密码是否正确';
+      this.common.error({title: '登录失败', msg: '请检查用户名或密码是否正确'});
     });
   }
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {NoteService} from '../note.service';
+import {CommonService} from '../../../commons/common.service';
 
 @Component({
   selector: 'app-note',
@@ -12,13 +13,16 @@ export class NoteComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private service: NoteService
+    private service: NoteService,
+    private common: CommonService
   ) {
   }
 
   ngOnInit() {
+    this.common.loading();
     this.service.getList().subscribe(res => {
       this.list = res;
+      this.common.loadingClose();
     });
   }
 

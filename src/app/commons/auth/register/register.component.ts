@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {Router} from '@angular/router';
+import {CommonService} from '../../common.service';
 
 @Component({
   selector: 'app-register',
@@ -18,14 +19,11 @@ export class RegisterComponent implements OnInit {
     password: '',
     nickname: ''
   };
-  errorFlag = false;
-  errorTitle = '';
-  errorMsg = '';
-  successFlag = false;
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private common: CommonService
   ) {
   }
 
@@ -34,20 +32,13 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     this.http.post(environment.oauthUrl + '/user', this.user).subscribe(() => {
-      this.successFlag = true;
-      setTimeout(() => {
-        this.successFlag = false;
-        this.router.navigate(['/login']);
-      }, 1500);
+      this.router.navigate(['/login']);
+      this.common.toast({msg: '注册成功', seconds: 1500});
     }, err => {
       if (err[`status`] === 302) {
-        this.errorFlag = true;
-        this.errorTitle = '注册失败';
-        this.errorMsg = '用户名已经存在';
+        this.common.error({title: '注册失败', msg: '用户名已经存在'});
       } else {
-        this.errorFlag = true;
-        this.errorTitle = '系统异常';
-        this.errorMsg = '出BUG了，请联系管理员qq253498229';
+        this.common.error({title: '系统异常', msg: '出BUG了，请联系管理员qq253498229'});
       }
     });
   }

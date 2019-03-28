@@ -1,1 +1,28 @@
 <router-outlet></router-outlet>
+
+<div id="toast" *ngIf="toastFlag">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast">
+    <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+    <p class="weui-toast__content">{{toastMsg}}</p>
+  </div>
+</div>
+
+<div id="loadingToast" *ngIf="loadingFlag">
+  <div class="weui-mask_transparent"></div>
+  <div class="weui-toast">
+    <i class="weui-loading weui-icon_toast"></i>
+    <p class="weui-toast__content">加载中</p>
+  </div>
+</div>
+
+<div *ngIf="errorFlag">
+  <div class="weui-mask"></div>
+  <div class="weui-dialog">
+    <div class="weui-dialog__hd"><strong class="weui-dialog__title">{{errorTitle}}</strong></div>
+    <div class="weui-dialog__bd">{{errorMsg}}</div>
+    <div class="weui-dialog__ft">
+      <a (click)="errorFlag = false" class="weui-dialog__btn weui-dialog__btn_primary">确定</a>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {StoreService} from '../../store/store.service';
 import {Note} from '../note';
 import {Store} from '../../store/store';
+import {CommonService} from '../../../commons/common.service';
 
 @Component({
   selector: 'app-detail',
@@ -21,11 +22,13 @@ export class DetailComponent implements OnInit {
     private service: NoteService,
     private storeService: StoreService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private common: CommonService
   ) {
   }
 
   ngOnInit() {
+    this.common.loading();
     this.detail = new Note();
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -38,19 +41,23 @@ export class DetailComponent implements OnInit {
     }
     this.storeService.getList().subscribe(res => {
       this.accounts = res;
+      this.common.loadingClose();
     });
   }
 
   save() {
-    // console.log(this.detail);
+    this.common.loading();
     this.service.save(this.detail).subscribe(() => {
       this.router.navigate(['/note']);
+      this.common.loadingClose();
     });
   }
 
   delete(id: any) {
+    this.common.loading();
     this.service.delete(id).subscribe(() => {
       this.router.navigate(['/note']);
+      this.common.loadingClose();
     });
   }
 

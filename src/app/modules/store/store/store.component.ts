@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StoreService} from '../store.service';
 import {Router} from '@angular/router';
+import {CommonService} from '../../../commons/common.service';
 
 @Component({
   selector: 'app-store',
@@ -12,13 +13,16 @@ export class StoreComponent implements OnInit {
 
   constructor(
     private service: StoreService,
-    private router: Router
+    private router: Router,
+    private common: CommonService
   ) {
   }
 
   ngOnInit() {
+    this.common.loading();
     this.service.getList().subscribe(res => {
       this.list = res;
+      this.common.loadingClose();
     });
   }
 
